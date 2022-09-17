@@ -1,38 +1,39 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { Box, ChakraProvider, theme } from "@chakra-ui/react";
+import Sidebar from "./components/LeftMenu/Sidebar";
+import MidArea from "./components/MidSection/MidArea";
+import PreviewArea from "./components/RightMenu/PreviewArea";
+import SpriteMenu from "./components/RightMenu/SpriteMenu";
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+	<ChakraProvider theme={theme}>
+		<Box
+			display="flex"
+			flexDir={"row"}
+			flexWrap={"wrap"}
+			fontSize="xl"
+			height={"100vh"}
+			overflow={"auto"}
+			background={"blue.200"}>
+			<Box
+				display={"flex"}
+				width={"container.lg"}
+				background={"white"}
+				height="calc(100vh - 2rem)"
+				margin={"2.5"}
+				borderRadius={"base"}>
+				<Sidebar />
+				<MidArea />
+			</Box>
+			<Box
+				display={"flex"}
+				width={"sm"}
+				flexDir={"column"}
+				height="calc(100vh - 2rem)"
+				margin={"2.5"}
+				borderRadius={"base"}>
+				<PreviewArea />
+				<SpriteMenu />
+			</Box>
+		</Box>
+	</ChakraProvider>
+);
