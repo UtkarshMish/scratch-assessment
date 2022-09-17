@@ -1,5 +1,5 @@
 import { Box, ChakraProvider, theme } from "@chakra-ui/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Sidebar from "./components/LeftMenu/Sidebar";
 import MidArea from "./components/MidSection/MidArea";
 import { SpriteMenuElement } from "./components/RightMenu/interface";
@@ -18,6 +18,13 @@ export const App = () => {
 			Icon: CatSprite
 		}
 	]);
+	const deleteHandler = useCallback(
+		(key: number) => {
+			setSpriteList([...spriteList.filter((_v, index) => index !== key)]);
+		},
+		[spriteList]
+	);
+
 	return (
 		<ChakraProvider theme={theme}>
 			<Box
@@ -46,7 +53,7 @@ export const App = () => {
 					margin={"2.5"}
 					borderRadius={"base"}>
 					<PreviewArea />
-					<SpriteMenu spritesList={spriteList} />
+					<SpriteMenu spritesList={spriteList} deleteHandler={deleteHandler} />
 				</Box>
 			</Box>
 		</ChakraProvider>
