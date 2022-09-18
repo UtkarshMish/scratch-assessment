@@ -7,7 +7,7 @@ interface SpriteBoxProps {
 	index: number;
 	data: SpriteMenuElement;
 	isSelected: boolean;
-	onClick:()=>void;
+	onClick: () => void;
 }
 const SpriteBox: React.FunctionComponent<SpriteBoxProps> = (props) => {
 	const { index, deleteHandler, data, isSelected, onClick } = props;
@@ -26,7 +26,7 @@ const SpriteBox: React.FunctionComponent<SpriteBoxProps> = (props) => {
 			className={"selectable"}
 			position={"relative"}
 			onClick={onClick}
-			boxShadow={isSelected ? "2xl" : "none"}>
+			boxShadow={isSelected ? "0px 0px 0px 4px #4d97ff59" : "none"}>
 			<Button
 				position={"absolute"}
 				top={"-2.5"}
