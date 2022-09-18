@@ -24,6 +24,22 @@ export const App = () => {
 		},
 		[spriteList]
 	);
+	const addHandler = useCallback(
+		(
+			sprite: SpriteMenuElement = {
+				name: "sprite1",
+				isShown: true,
+				direction: 90,
+				size: 100,
+				x: 0,
+				y: 0,
+				Icon: CatSprite
+			}
+		) => {
+			setSpriteList([...spriteList, sprite]);
+		},
+		[spriteList]
+	);
 
 	return (
 		<ChakraProvider theme={theme}>
@@ -53,7 +69,11 @@ export const App = () => {
 					margin={"2.5"}
 					borderRadius={"base"}>
 					<PreviewArea />
-					<SpriteMenu spritesList={spriteList} deleteHandler={deleteHandler} />
+					<SpriteMenu
+						spritesList={spriteList}
+						addHandler={addHandler}
+						deleteHandler={deleteHandler}
+					/>
 				</Box>
 			</Box>
 		</ChakraProvider>
