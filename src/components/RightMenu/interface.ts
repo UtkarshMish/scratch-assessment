@@ -2,8 +2,8 @@ import { SpriteProps } from "../Sprites/interface";
 
 export interface SpriteMenuElement {
 	name: string;
-	x: number;
-	y: number;
+	x: string | number;
+	y: string | number;
 	isShown: boolean;
 	size: number;
 	direction: number;
