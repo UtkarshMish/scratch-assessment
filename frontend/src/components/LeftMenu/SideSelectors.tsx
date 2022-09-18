@@ -10,6 +10,7 @@ const SideSelectors: React.FunctionComponent<SideSelectorProps> = (props) => {
 	return (
 		<Box
 			display={"flex"}
+			overflow="auto"
 			flexDir={"column"}
 			background={"gray.200"}
 			width={"20"}
