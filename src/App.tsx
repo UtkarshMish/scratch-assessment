@@ -27,11 +27,11 @@ export const App = () => {
 		[spriteList]
 	);
 	const updateHandler = useCallback(
-		(sprite: SpriteMenuElement, index: number) => {
-			spriteList[index] = sprite;
+		(sprite: SpriteMenuElement) => {
+			spriteList[selectedSprite] = sprite;
 			setSpriteList([...spriteList]);
 		},
-		[spriteList]
+		[spriteList, selectedSprite]
 	);
 	const selectHandler = useCallback((index: number) => {
 		setSelectedSprite(index);
@@ -84,6 +84,7 @@ export const App = () => {
 						spritesList={spriteList}
 						onSelectHandler={selectHandler}
 						selectedSprite={selectedSprite}
+						updateHandler={updateHandler}
 					/>
 					<SpriteMenu
 						selectedSprite={selectedSprite}

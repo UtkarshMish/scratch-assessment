@@ -1,12 +1,13 @@
 import { Box, Button } from "@chakra-ui/react";
 import { BsPlusCircle } from "react-icons/bs";
+import { nameValidation } from "../../utils/spriteValidatior";
 
 import DataBox from "./DataBox";
 import { SpriteMenuElement } from "./interface";
 import SpriteBox from "./SpriteBox";
 interface SpriteMenuProps {
 	spritesList: SpriteMenuElement[];
-	updateHandler: (sprite: SpriteMenuElement, index: number) => void;
+	updateHandler: (sprite: SpriteMenuElement) => void;
 	deleteHandler: (key: number) => void;
 	onSelectHandler: (key: number) => void;
 	addHandler: (sprite?: SpriteMenuElement) => void;
@@ -20,7 +21,7 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 		addHandler,
 		deleteHandler,
 		updateHandler,
-		onSelectHandler,
+		onSelectHandler
 	} = props;
 	const onSelectedChange = (
 		value: any,
@@ -28,58 +29,40 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 	) => {
 		switch (type) {
 			case "sprite":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						name: value
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					name: nameValidation(value) ? value : spritesList[selectedSprite].name
+				});
 				break;
 			case "direction":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						direction: value === "" ? 0 : parseInt(value)
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					direction: value === "" ? 0 : parseInt(value)
+				});
 				break;
 			case "show":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						isShown: value
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					isShown: value
+				});
 				break;
 			case "x":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						x: value === "" ? 0 : parseInt(value)
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					x: value === "" ? 0 : parseInt(value)
+				});
 				break;
 			case "y":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						y: value === "" ? 0 : parseInt(value)
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					y: value === "" ? 0 : parseInt(value)
+				});
 				break;
 			case "size":
-				updateHandler(
-					{
-						...spritesList[selectedSprite],
-						size: value === "" ? 0 : parseInt(value)
-					},
-					selectedSprite
-				);
+				updateHandler({
+					...spritesList[selectedSprite],
+					size: value === "" ? 0 : parseInt(value)
+				});
 				break;
 		}
 	};
