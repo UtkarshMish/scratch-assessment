@@ -48,6 +48,8 @@ export const App = () => {
 				Icon: CatSprite
 			}
 		) => {
+			sprite.x = spriteList.length * 10;
+			sprite.y = spriteList.length * 10;
 			setSpriteList([...spriteList, sprite]);
 		},
 		[spriteList]

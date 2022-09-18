@@ -1,8 +1,12 @@
 import { Box, Circle } from "@chakra-ui/react";
 import { SIDE_MENU } from "../../constants/menu";
 import IconComponent from "../common/IconComponent";
-
-export default function SideSelectors() {
+interface SideSelectorProps {
+	selected: string | null;
+	handleClick: (x: string) => void;
+}
+const SideSelectors: React.FunctionComponent<SideSelectorProps> = (props) => {
+	const { selected, handleClick } = props;
 	return (
 		<Box
 			display={"flex"}
@@ -12,6 +16,8 @@ export default function SideSelectors() {
 			borderRadius={"base"}>
 			{Object.keys(SIDE_MENU).map((value) => (
 				<IconComponent
+					isSelected={selected === value}
+					handleClick={() => handleClick(value)}
 					key={value}
 					title={value}
 					icon={
@@ -26,4 +32,5 @@ export default function SideSelectors() {
 			))}
 		</Box>
 	);
-}
+};
+export default SideSelectors;
