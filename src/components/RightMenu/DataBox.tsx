@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { GiHorizontalFlip, GiVerticalFlip } from "react-icons/gi";
 import InputBox from "../common/InputBox";
 import { SpriteMenuElement } from "./interface";
 interface DataBoxProps extends SpriteMenuElement {
@@ -14,7 +15,6 @@ export default function DataBox({
 	size,
 	x,
 	y,
-	Icon,
 	handleChange
 }: DataBoxProps) {
 	const INPUT_ELEMENTS = [
@@ -26,13 +26,13 @@ export default function DataBox({
 		},
 		{
 			name: "x",
-			leftAddon: null,
+			leftAddon: <GiHorizontalFlip fontWeight={"700"} size={"1.5rem"} />,
 			type: "number",
 			value: x
 		},
 		{
 			name: "y",
-			leftAddon: null,
+			leftAddon: <GiVerticalFlip fontWeight={"700"} size={"1.5rem"} />,
 			type: "number",
 			value: y
 		},

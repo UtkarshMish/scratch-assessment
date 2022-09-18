@@ -1,4 +1,5 @@
 import { Box, ChakraProvider, theme } from "@chakra-ui/react";
+
 import { useCallback, useState } from "react";
 import Sidebar from "./components/LeftMenu/Sidebar";
 import MidArea from "./components/MidSection/MidArea";
@@ -18,12 +19,23 @@ export const App = () => {
 			Icon: CatSprite
 		}
 	]);
+	const [selectedSprite, setSelectedSprite] = useState<number>(0);
 	const deleteHandler = useCallback(
 		(key: number) => {
 			setSpriteList([...spriteList.filter((_v, index) => index !== key)]);
 		},
 		[spriteList]
 	);
+	const updateHandler = useCallback(
+		(sprite: SpriteMenuElement, index: number) => {
+			spriteList[index] = sprite;
+			setSpriteList([...spriteList]);
+		},
+		[spriteList]
+	);
+	const selectHandler = useCallback((index: number) => {
+		setSelectedSprite(index);
+	}, []);
 	const addHandler = useCallback(
 		(
 			sprite: SpriteMenuElement = {
@@ -68,10 +80,17 @@ export const App = () => {
 					height="calc(100vh - 2rem)"
 					margin={"2.5"}
 					borderRadius={"base"}>
-					<PreviewArea />
+					<PreviewArea
+						spritesList={spriteList}
+						onSelectHandler={selectHandler}
+						selectedSprite={selectedSprite}
+					/>
 					<SpriteMenu
+						selectedSprite={selectedSprite}
 						spritesList={spriteList}
 						addHandler={addHandler}
+						onSelectHandler={selectHandler}
+						updateHandler={updateHandler}
 						deleteHandler={deleteHandler}
 					/>
 				</Box>

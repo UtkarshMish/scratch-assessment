@@ -4,7 +4,7 @@ import ShownBox from "./ShownBox";
 interface InputBoxProps {
 	element: {
 		name: string;
-		leftAddon: null;
+		leftAddon: null | JSX.Element;
 		type: string;
 		value: string | number | boolean;
 	};
