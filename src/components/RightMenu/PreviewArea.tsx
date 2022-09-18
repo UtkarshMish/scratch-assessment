@@ -33,7 +33,7 @@ const PreviewArea: React.FunctionComponent<PreviewAreaProps> = (props) => {
 			position={"relative"}>
 			{spritesList.map((element, index) => (
 				<Draggable
-					key={index}
+					key={element.name + index}
 					onClick={() => onSelectHandler(index)}
 					{...element}
 					dragHandler={(x: string | number, y: string | number) =>
@@ -57,39 +57,38 @@ const Draggable: React.FunctionComponent<DraggableProps> = (sprite) => {
 	const valueInDegrees = Math.floor((direction - 90) % 360);
 	const [isDragged, setIsDragged] = React.useState<boolean>(false);
 	const controls = useDragControls();
+
 	return (
 		<motion.div
 			onClick={() => onClick()}
+			translate="yes"
+			transformTemplate={(temp, val) => {
+				if (isDragged) {
+					dragHandler(
+						parseInt(String(temp.x).replace("px", "")),
+						parseInt(String(temp.y).replace("px", ""))
+					);
+					setIsDragged(false);
+				}
+				return val;
+			}}
 			style={{
 				position: "absolute",
-				translateX: x,
-				translateY: y,
 				width: "fit-content",
 				height: "fit-content",
 				display: isShown ? "initial" : "none",
-				rotate: valueInDegrees
+				rotate: valueInDegrees,
+				translateX: x + "px",
+				translateY: y + "px"
 			}}
 			drag
 			dragConstraints={{
 				top: 0,
 				left: 0,
-				bottom: 300,
-				right: 285
+				bottom: 135,
+				right: 150
 			}}
-			onDragCapture={() => onClick()}
-			transformTemplate={(transform) => {
-				if (transform.translateX || transform.translateY) {
-					return `translateX(${transform.translateX}) translateY(${transform.translateY})`;
-				}
-				if (isDragged && transform.x && transform.y) {
-					dragHandler(
-						parseInt(String(transform.x).replace("px", "")),
-						parseInt(String(transform.y).replace("px", ""))
-					);
-					setIsDragged(false);
-				}
-				return `rotate(${transform.rotate}) translate(${transform.x},${transform.y})`;
-			}}
+			onDragStart={() => onClick()}
 			onDragEnd={() => setIsDragged(true)}
 			dragMomentum={false}
 			dragElastic={0}

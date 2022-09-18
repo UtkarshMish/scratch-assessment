@@ -1,6 +1,10 @@
 import { Box, Button } from "@chakra-ui/react";
 import { BsPlusCircle } from "react-icons/bs";
-import { nameValidation } from "../../utils/spriteValidatior";
+import {
+	axisValidation,
+	nameValidation,
+	sizeValidation
+} from "../../utils/spriteValidatior";
 
 import DataBox from "./DataBox";
 import { SpriteMenuElement } from "./interface";
@@ -37,7 +41,7 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 			case "direction":
 				updateHandler({
 					...spritesList[selectedSprite],
-					direction: value === "" ? 0 : parseInt(value)
+					direction: value === "" ? value : parseInt(value)
 				});
 				break;
 			case "show":
@@ -49,19 +53,19 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 			case "x":
 				updateHandler({
 					...spritesList[selectedSprite],
-					x: value === "" ? 0 : parseInt(value)
+					x: axisValidation(value, -21, 151) ? value : spritesList[selectedSprite].x
 				});
 				break;
 			case "y":
 				updateHandler({
 					...spritesList[selectedSprite],
-					y: value === "" ? 0 : parseInt(value)
+					y: axisValidation(value, -21, 301) ? value : spritesList[selectedSprite].y
 				});
 				break;
 			case "size":
 				updateHandler({
 					...spritesList[selectedSprite],
-					size: value === "" ? 0 : parseInt(value)
+					size: sizeValidation(value) ? value : spritesList[selectedSprite].size
 				});
 				break;
 		}
