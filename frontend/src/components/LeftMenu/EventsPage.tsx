@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import React from "react";
 import { SIDE_MENU } from "../../constants/menu";
 import ActionMenu from "../common/ActionMenu";
 interface EventsPageProps {
@@ -32,14 +33,39 @@ export default function EventsPage(props: EventsPageProps) {
 			overflow="auto"
 			fontWeight={"semibold"}>
 			{Object.keys(SIDE_MENU).map((element, index) => (
-				<Box key={element + index}>
-					<Text fontSize={"md"}>{element}</Text>
-					{sideMenuList
-						.filter((val) => val?.category === element)
-						.map((item) => (item ? <ActionMenu key={item.title} {...item} /> : null))
-						.filter((val) => val != null)}
-				</Box>
+				<ScrollableEvents
+					key={index}
+					isSelected={element.toLowerCase() === selected?.toLocaleLowerCase()}
+					element={element}
+					sideMenuList={sideMenuList}
+				/>
 			))}
+		</Box>
+	);
+}
+interface ScrollableEventsProps {
+	element: string;
+	sideMenuList: (
+		| { category: string; title: string; color: string; background: string }
+		| null
+		| undefined
+	)[];
+	isSelected?: boolean;
+}
+function ScrollableEvents(props: ScrollableEventsProps): JSX.Element {
+	const { element, sideMenuList, isSelected } = props;
+
+	const refElement = React.useRef<HTMLDivElement>(null);
+	if (isSelected && refElement.current) {
+		refElement.current.scrollIntoView({ behavior: "smooth", block: "start" });
+	}
+	return (
+		<Box ref={refElement}>
+			<Text fontSize={"md"}>{element}</Text>
+			{sideMenuList
+				.filter((val) => val?.category === element)
+				.map((item) => (item ? <ActionMenu key={item.title} {...item} /> : null))
+				.filter((val) => val != null)}
 		</Box>
 	);
 }
