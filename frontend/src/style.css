@@ -17,3 +17,19 @@
 .blockly__workspace {
 	width: 100rem;
 }
+div.blocklyToolboxDiv {
+	min-width: 12rem;
+}
+
+div.blocklyTreeRow {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding: 6px !important;
+	border-radius: 10px;
+	height: auto !important;
+	border-left: none !important;
+}
+div.blocklyTreeRow:hover {
+	cursor: pointer;
+}

@@ -1,7 +1,6 @@
 import { Box, ChakraProvider, theme } from "@chakra-ui/react";
 
 import { useCallback, useState } from "react";
-import Sidebar from "./components/LeftMenu/Sidebar";
 import MidArea from "./components/MidSection/MidArea";
 import { SpriteMenuElement } from "./components/RightMenu/interface";
 import PreviewArea from "./components/RightMenu/PreviewArea";
@@ -72,7 +71,7 @@ export const App = () => {
 					height="calc(100vh - 2rem)"
 					margin={"2.5"}
 					borderRadius={"base"}>
-					<Sidebar />
+					{/* <Sidebar /> */}
 					<MidArea />
 				</Box>
 				<Box
