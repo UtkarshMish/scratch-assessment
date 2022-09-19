@@ -83,7 +83,8 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 		<Box height={"50%"} position={"relative"}>
 			<DataBox {...spritesList[selectedSprite]} handleChange={onSelectedChange} />
 			<Box
-				height={"50%"}
+				height={"61%"}
+				minHeight={"11rem"}
 				className="bordered__box"
 				background={"#90cdf4"}
 				borderRadius={"base"}
@@ -103,13 +104,13 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 				))}
 				<Button
 					pos={"absolute"}
-					top={"82%"}
+					top={"16.5rem"}
 					colorScheme={"blue"}
 					padding={0}
 					borderRadius={"50%"}
 					background={"#3373cc"}
 					color={"white"}
-					left={"95%"}
+					left={"23rem"}
 					onClick={() => addHandler()}>
 					<BsPlusCircle />
 				</Button>
