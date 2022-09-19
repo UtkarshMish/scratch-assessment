@@ -43,6 +43,7 @@ export default function EventsPage(props: EventsPageProps) {
 		</Box>
 	);
 }
+
 interface ScrollableEventsProps {
 	element: string;
 	sideMenuList: (
@@ -62,6 +63,7 @@ function ScrollableEvents(props: ScrollableEventsProps): JSX.Element {
 	return (
 		<Box ref={refElement}>
 			<Text fontSize={"md"}>{element}</Text>
+
 			{sideMenuList
 				.filter((val) => val?.category === element)
 				.map((item) => (item ? <ActionMenu key={item.title} {...item} /> : null))

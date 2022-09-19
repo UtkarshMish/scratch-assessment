@@ -14,6 +14,7 @@ const SideSelectors: React.FunctionComponent<SideSelectorProps> = (props) => {
 			flexDir={"column"}
 			background={"gray.200"}
 			width={"20"}
+			minW={"fit-content"}
 			borderRadius={"base"}>
 			{Object.keys(SIDE_MENU).map((value) => (
 				<IconComponent

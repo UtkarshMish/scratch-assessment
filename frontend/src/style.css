@@ -14,3 +14,6 @@
 	border-bottom-style: solid;
 	border-bottom-color: rgba(0, 0, 0, 0.15);
 }
+.blockly__workspace {
+	width: 100rem;
+}
