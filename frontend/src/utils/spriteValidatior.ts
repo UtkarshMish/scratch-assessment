@@ -5,39 +5,21 @@ export function nameValidation(name: string) {
 	return false;
 }
 
-export function axisValidation(
-	x: string | number,
-	minLimit: number = -21,
-	maxLimit: number = 301
-) {
+export function numberValidation(x: string | number) {
 	if (typeof x == "string") {
-		if (x === "") {
-			return true;
-		} else if (!isNaN(parseInt(x))) {
-			x = parseInt(x);
-		} else {
-			return false;
-		}
-	}
-
-	if (typeof x == "number" && x > minLimit && x < maxLimit) return true;
-	else {
+		if (x === "" || !isNaN(parseInt(x))) return true;
+		else return false;
+	} else if (typeof x == "number") {
+		return true;
+	} else {
 		return false;
 	}
 }
-export function sizeValidation(x: string | number) {
-	if (typeof x == "string") {
-		if (x === "") {
-			return true;
-		} else if (!isNaN(parseInt(x))) {
-			x = parseInt(x);
-		} else {
-			return false;
-		}
-	}
 
-	if (typeof x == "number" && x >= 0 && x < 350) return true;
+export function returnLimitValue(x: number, minLimit: number, maxLimit: number) {
+	if (x < minLimit) return minLimit;
+	else if (x > maxLimit) return maxLimit;
 	else {
-		return false;
+		return x;
 	}
 }

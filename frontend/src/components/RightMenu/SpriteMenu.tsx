@@ -1,9 +1,9 @@
 import { Box, Button } from "@chakra-ui/react";
 import { BsPlusCircle } from "react-icons/bs";
 import {
-	axisValidation,
 	nameValidation,
-	sizeValidation
+	numberValidation,
+	returnLimitValue
 } from "../../utils/spriteValidatior";
 
 import DataBox from "./DataBox";
@@ -41,7 +41,9 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 			case "direction":
 				updateHandler({
 					...spritesList[selectedSprite],
-					direction: value === "" ? value : parseInt(value)
+					direction: numberValidation(value)
+						? returnLimitValue(value, -360, 360)
+						: spritesList[selectedSprite].direction
 				});
 				break;
 			case "show":
@@ -53,19 +55,25 @@ export default function SpriteMenu(props: SpriteMenuProps) {
 			case "x":
 				updateHandler({
 					...spritesList[selectedSprite],
-					x: axisValidation(value, -21, 151) ? value : spritesList[selectedSprite].x
+					x: numberValidation(value)
+						? returnLimitValue(parseInt(value), -21, 151)
+						: spritesList[selectedSprite].x
 				});
 				break;
 			case "y":
 				updateHandler({
 					...spritesList[selectedSprite],
-					y: axisValidation(value, -21, 301) ? value : spritesList[selectedSprite].y
+					y: numberValidation(value)
+						? returnLimitValue(parseInt(value), -21, 301)
+						: spritesList[selectedSprite].y
 				});
 				break;
 			case "size":
 				updateHandler({
 					...spritesList[selectedSprite],
-					size: sizeValidation(value) ? value : spritesList[selectedSprite].size
+					size: numberValidation(value)
+						? returnLimitValue(parseInt(value), 5, 250)
+						: spritesList[selectedSprite].size
 				});
 				break;
 		}

@@ -7,7 +7,7 @@ interface EventsPageProps {
 	handleScroll: (x: string) => void;
 }
 export default function EventsPage(props: EventsPageProps) {
-	const { selected, handleScroll } = props;
+	const { selected } = props;
 	const sideMenuList = Object.keys(SIDE_MENU)
 		.map((key) => {
 			if (SIDE_MENU[key].menu_items != null) {
